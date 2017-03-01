@@ -1,0 +1,4 @@
+FROM microsoft/dotnet:1.0.3-sdk-projectjson
+COPY ./appsource/ /tests
+WORKDIR /tests
+RUN dotnet restore

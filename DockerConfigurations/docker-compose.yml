@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  taskapi.aspnetcore.web:
+    image: lelev/taskapicorelinux
+    ports:
+      - "80"
+    links:
+      - db:db
+  db:
+    container_name: taskapi.database
+    image: mongo

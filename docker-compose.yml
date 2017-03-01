@@ -1,0 +1,47 @@
+base:
+  image: 10.100.198.200:5000/taskapi
+  ports:
+    - "80"
+  environment:
+    - SERVICE_NAME=taskapi
+
+app:
+  extends:
+    service: base
+  links:
+    - db:db
+
+app-sf:
+  extends:
+    service: base
+  links:
+    - db:db
+  environment:
+   - ASPNETCORE_ENVIRONMENT=ProductionSF
+
+app-blue:
+  extends:
+    service: base
+  environment:
+    - SERVICE_NAME=taskapi-blue
+  links:
+    - db:db
+
+app-green:
+  extends:
+    service: base
+  environment:
+    - SERVICE_NAME=taskapi-green
+  links:
+    - db:db
+
+applocal:
+  extends:
+    service: base
+  links:
+    - db:db
+
+db:
+  container_name: taskapi.database
+  image: mongo
+                     

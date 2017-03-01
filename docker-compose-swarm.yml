@@ -1,0 +1,27 @@
+app:
+  image: vlele/taskapicorelinuxci
+  ports:
+    - 80:80
+  net: taskapi
+  environment:
+    - SERVICE_NAME=taskapi
+    - DB_HOST=taskapi.database
+
+app-blue:
+  environment:
+    - SERVICE_NAME=taskapi-blue
+  extends:
+    service: app
+
+app-green:
+  environment:
+    - SERVICE_NAME=taskapi-green
+  extends:
+    service: app
+
+db:
+  container_name: taskapi.database
+  image: mongo
+  net: taskapi
+  environment:
+    - SERVICE_NAME=taskapi.database

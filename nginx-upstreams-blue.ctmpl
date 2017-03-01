@@ -1,0 +1,5 @@
+upstream taskapi {
+    {{range service "taskapi-blue" "any"}}
+    server {{.Address}}:{{.Port}};
+    {{end}}
+}

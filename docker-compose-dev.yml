@@ -1,0 +1,26 @@
+version: '2'
+services:
+  app:
+    image: 10.100.198.200:5000/taskapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80"
+    links:
+      - db:db
+
+  db:
+    container_name: taskapi.database
+    image: mongo
+  tests:
+    image: 10.100.198.200:5000/taskapi-unittests
+    command: dotnet test TaskAPI.AspnetCore.UnitTests
+    environment:
+      - TEST_TYPE=all
+  integ:
+    image: 10.100.198.200:5000/taskapi-tests
+    command: dotnet test
+    environment:
+     - TEST_TYPE=integ
+     

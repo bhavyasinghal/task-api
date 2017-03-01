@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  taskapi.aspnetcore.web:
+    image: user/taskapi.aspnetcore.web${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80"
+    links:
+      - db:db
+  db:    
+    container_name: taskapi.database
+    image: mongo
