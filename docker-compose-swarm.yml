@@ -1,5 +1,5 @@
 app:
-  image: vlele/taskapicorelinuxci
+  image: lelev/taskapicorelinuxci
   ports:
     - 80:80
   net: taskapi
