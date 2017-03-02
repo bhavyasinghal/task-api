@@ -7,7 +7,7 @@ node("cd") {
 		
     def flow = load "/data/scripts/workflow-util.groovy"
 		
-    git url: "https://github.com/DavoodKhan/task-api.git"
+    git url: "https://github.com/vlele/task-api.git"
     
 	flow.setupCommands(serviceName)
 	flow.provision("prod2.yml")
